@@ -69,6 +69,22 @@ fetch("/allpost",{
 
         })
     }
+    const deletePost=(postId)=>{
+        fetch('/deletepost/'+postId,{
+            method:"delete",
+            headers:{
+                
+                "Authorization":"Bearer "+localStorage.getItem("jwt")
+            }
+        }).then(res=>res.json())
+        .then(result=>{
+            console.log(result)
+            const newData=data.filter(item=>{
+                return item._id !==result._id
+            })
+            setData(newData)
+        })
+    }
     const makeComment=(text,postId)=>{
         fetch('/comment',{
             method:"put",
@@ -84,7 +100,7 @@ fetch("/allpost",{
 
         }).then(res=>res.json())
         .then(result=>{
-          console.log(result)
+          
             const newData=data.map(item=>{
                 if(item._id==result._id)
                 {
@@ -105,7 +121,10 @@ fetch("/allpost",{
                 return(
                                
 <div className="card home-card" >
-    <h5>{item.postedby.name}</h5>
+    <h5>{item.postedby.name} {item.postedby._id==state._id && 
+        <i className="material-icons" style={{float:"right",cursor:"pointer",userSelect:"none"}} onClick={()=>{deletePost(item._id)}}>delete</i>
+     }
+    </h5>
     <div className="card-image">
         <img src={item.photo} alt="" />
         </div>
@@ -113,7 +132,7 @@ fetch("/allpost",{
   
 
     {
-        item.likes.includes(state._id)?   <i className="material-icons" style={{cursor: "pointer"}} onClick={()=>unlikePost(item._id)}>thumb_down</i>:    <i className="material-icons" style={{cursor: "pointer"}} onClick={()=>likePost(item._id)}>thumb_up</i>
+        item.likes.includes(state._id)?   <i className="material-icons" style={{cursor: "pointer",userSelect:"none"}} onClick={()=>unlikePost(item._id)}>thumb_down</i>:    <i className="material-icons" style={{cursor: "pointer",userSelect:"none"}} onClick={()=>likePost(item._id)}>thumb_up</i>
     }
  
     <h6>{item.likes.length}<span>     </span>likes</h6>

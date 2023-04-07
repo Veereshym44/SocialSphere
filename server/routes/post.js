@@ -28,9 +28,7 @@ res.json({mypost})
 })
 router.post('/createpost',requireLogin,(req,res)=>{
     const {title,body,photo}=req.body
-    console.log(title)
-    console.log(body)
-    console.log(photo)
+    
 
     if(!title||!body||!photo)
     {
@@ -48,7 +46,8 @@ router.post('/createpost',requireLogin,(req,res)=>{
    })
    .catch(err=>{
     res.json({error:err})
-    console.log(err);
+    console.log(err)
+    
    })
 })
 router.put('/like',requireLogin,(req,res)=>{
@@ -109,6 +108,31 @@ router.put('/comment',requireLogin,(req,res)=>{
         else{
             res.json(result)
         }
+    })
+})
+router.delete('/deletepost/:postId',requireLogin,(req,res)=>{
+    Post.findOne({_id:req.params.postId})
+    .populate("postedby","_id")
+    .exec((err,post)=>{
+        if(err||!post)
+       return res.status(422).json({error:err})
+        if(post)
+        {
+            if(post.postedby._id.toString()===req.user._id.toString())
+            post.remove()
+            .then(result=>{
+                res.json(result)
+                
+            })
+            .catch(err=>{
+                console.log(err);
+            })
+            
+               
+            
+            
+        }
+        
     })
 })
 module.exports=router
