@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "cd server && npx nodemon index.js"
+    "start": "cd server &&  node index.js"
   },
   "author": "",
   "license": "ISC",
