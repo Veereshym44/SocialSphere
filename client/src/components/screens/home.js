@@ -65,6 +65,8 @@ fetch("/allpost",{
                 return item;
             })
             setData(newData)
+         
+
         })
     }
     const makeComment=(text,postId)=>{
