@@ -2,11 +2,11 @@ require('dotenv').config();
 const express=require('express');
 const cors=require('cors');
 const mongoose=require('mongoose');
-
+const path = require("path")
 const app=express();
 const PORT=5000;
-const MONGO_URI=process.env.MONGO_URI;
-console.log(MONGO_URI)
+
+
 
 mongoose.connect(process.env.MONGO_URI,{
     useNewUrlParser:true,
@@ -21,7 +21,7 @@ mongoose.connection.on('error',(err)=>{
     console.log(err);
 });
 
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "../client/public/")));
 app.use(express.json());
 app.use(cors());
 require('./models/user');

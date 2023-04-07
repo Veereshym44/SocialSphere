@@ -108,7 +108,7 @@ fetch("/allpost",{
         <img src={item.photo} alt="" />
         </div>
     <div className='card-content'>
-    <i className="material-icons" style={{color:"red"}}>favorite</i>
+  
 
     {
         item.likes.includes(state._id)?   <i className="material-icons" style={{cursor: "pointer"}} onClick={()=>unlikePost(item._id)}>thumb_down</i>:    <i className="material-icons" style={{cursor: "pointer"}} onClick={()=>likePost(item._id)}>thumb_up</i>
