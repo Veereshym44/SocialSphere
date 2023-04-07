@@ -20,8 +20,7 @@ mongoose.connection.on('connected',()=>{
 mongoose.connection.on('error',(err)=>{
     console.log(err);
 });
-
-app.use(express.static("build/"));
+app.use(express.static(path.join(__dirname, "../client/build")));
 app.use(express.json());
 app.use(cors());
 require('./models/user');
