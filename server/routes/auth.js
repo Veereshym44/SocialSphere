@@ -12,7 +12,7 @@ const User=mongoose.model("User");
 const bcrypt=require('bcryptjs')
 const jwt=require('jsonwebtoken')
 
-const JWT_SECRET=process.env.JWT_SECRET
+ 
 
 router.get('/',(req,res)=>{
     res.send("hello");
@@ -58,7 +58,7 @@ router.post('/login',(req,res)=>{
         .then(doMatch=>{
             if(doMatch){
                 
-                const token=jwt.sign({_id:user._id},JWT_SECRET)
+                const token=jwt.sign({_id:user._id},process.env.JWT_SECRET)
                 const{_id,name,email}=user;
                 res.json({token,user:{_id,name,email},message:'login successfull'});
                 

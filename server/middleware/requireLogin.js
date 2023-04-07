@@ -1,5 +1,5 @@
 const jwt=require('jsonwebtoken')
-const JWT_SECRET=process.env.JWT_SECRET
+
 const mongoose=require('mongoose')
 const User=mongoose.model("User");
 module.exports=(req,res,next)=>{
@@ -10,7 +10,7 @@ if(!authorization)
 }
 else{
    const token= authorization.replace("Bearer ","")
-   jwt.verify(token,JWT_SECRET,(err,payload)=>{
+   jwt.verify(token,process.env.JWT_SECRET,(err,payload)=>{
     if(err)
     {
         return  res.status(401).json({error:"not authorized"})
