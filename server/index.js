@@ -2,7 +2,7 @@ require('dotenv').config();
 const express=require('express');
 const cors=require('cors');
 const mongoose=require('mongoose');
-const path = require("path")
+const path = require
 const app=express();
 const PORT=5000;
 
@@ -21,7 +21,7 @@ mongoose.connection.on('error',(err)=>{
     console.log(err);
 });
 
-app.use(express.static(path.join(__dirname, "../client/public/")));
+app.use(express.static("build/"));
 app.use(express.json());
 app.use(cors());
 require('./models/user');
