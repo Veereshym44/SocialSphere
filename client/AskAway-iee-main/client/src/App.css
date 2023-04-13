@@ -6,41 +6,7 @@ a{
   color: black;
   font-size: large;
 }
-.login-form{
-  border-radius:10%;
-}
 
-@media only screen and (min-width: 601px) {
-  .brand-logo {
-    margin-left: 20px;
-  }
-}
-
-@media only screen and (max-width: 600px) {
-  .nav-wrapper {
-    height: 64px;
-  }
-
-  .nav-wrapper .brand-logo {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  .sidenav-trigger {
-    position: absolute;
-    left: 10px;
-    top: 16px;
-  }
-
-  .sidenav-trigger i {
-    font-size: 32px;
-  }
-
-  .sidenav {
-    width: 70%;
-  }
-}
 
 .nav-links-login{
   size: 2rem;
@@ -58,12 +24,35 @@ a{
   border-bottom: 1px solid rgb(8, 93, 252)!important;
   box-shadow: 0 1px 0 0  rgb(8, 93, 252)!important;
 }
+.textarea{
+  min-width: 97%;
+  max-width: 97%;
+  min-height: 250px;
+  
+}
+.home-container{
+  margin: 2%;
+}
+body{
+  overflow-x: hidden;
+}
+.nav-bar{
+z-index: 999;
+margin:0 0 2% 0;
+padding: 1%;
+width: 100%;
+
+}
 .gallery{
   display: flex;
   gap:1rem;
   flex-wrap: wrap;
   justify-content: space-around;
 
+}
+.textarea{
+  width: 80%;
+  
 }
 .create-post-container{
   align-items: center;
@@ -73,13 +62,14 @@ a{
 
 }
 .home-card{
-  max-width: 600px;
+  
   height: 100%;
   margin: 26px auto;
+  display: flex;
 }
 .card-image img{
-width:400px;
-height: 450px;
+width:300px;
+height: 300px;
 object-fit: cover;
 }
 .proflie-main-div{
@@ -96,15 +86,11 @@ object-fit: cover;
   .auth-card{
     max-width: 80%;
   }
-  .card-image img{
-    width:350px;
-    height: 350px;
-    object-fit: cover;
-    }
 }
 .home-card{
   padding: 1rem;
 width:95%;
+flex-direction: row;
 }
 .item{
   width: 30%;

@@ -3,7 +3,7 @@ import{useNavigate,NavLink}from 'react-router-dom'
 import{UserContext}from '../../App'
 import M from 'materialize-css'
 
-export default function Login() {
+export default function DocLogin() {
   const {state,dispatch}=useContext(UserContext)
   const [user,setUser]=useState({
   
@@ -22,7 +22,7 @@ const handleChange=(e)=>{
 const PostData=async(e)=>{
   e.preventDefault()
   const{ email,password}=user;
-  const res=await fetch("/login",{
+  const res=await fetch("/doc-login",{
     method:"POST",
     headers:{
       "Content-Type":"application/json"
@@ -32,43 +32,36 @@ const PostData=async(e)=>{
     })
   }).then(res=>res.json())
   .then(data=>{
-   
+    console.log(data)
     if(data.error){
       M.toast({html:data.error})
-      
+      console.log(data.error);
     }
     else{
       M.toast({html:data.message})
-      dispatch({type:"USER",payload:data.user});
-     
-      
+      dispatch({type:"DOCTOR",payload:data.user});
+    
       localStorage.setItem("jwt",data.token)
-      localStorage.setItem("user",JSON.stringify(data.user))
-      Navigate('/')
+      localStorage.setItem("doctor",JSON.stringify(data.doctor))
+      Navigate('/');
     }
   })
 
 }
   return (
     
-    <div className='mycard '>
-      <div className='card auth-card' id="login-form-wrap">
-        <h2>Login</h2>
-        <form id="login-form">
-    
-       <input type="text"  name="email" id="username"  autoComplete="off" value={user.email} className='input-field validation' placeholder="email" onChange={handleChange}/>
-       
-       
-        <input type="password" name="password" id="email" autoComplete="off" value={user.password} className='input-field validation' placeholder='password'onChange={handleChange}/>
+    <div className='mycard'>
+      <div className='card auth-card'>
+        <h2 style={{  fontFamily: 'Roboto'}}>AskAway</h2>
+        <form >
+        <input type="text"  name="email" autoComplete="off" value={user.email}className='input-field' placeholder="email" onChange={handleChange}/>
+        <input type="password" name="password" autoComplete="off" value={user.password}className='input-field' placeholder='password'onChange={handleChange}/>
 
 
         <input type='submit' name='signup' className="btn waves-effect waves-light #64b5f6 blue darken-1"  value="Login" onClick={PostData}/>
         <br/>
 
-      <div id="create-account-wrap"> 
-      <NavLink className="nav-links-login"  to="/signup">Dont have a account? Signup</NavLink>
-      </div>
-
+        <NavLink className="nav-links-login"  to="/doc-signup">Dont have a account? Signup</NavLink>
   </form>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import React,{useState,useContext} from 'react'
 import{useNavigate,NavLink}from 'react-router-dom'
 import{UserContext}from '../../App'
+
 import M from 'materialize-css'
 
 export default function Login() {
@@ -32,16 +33,15 @@ const PostData=async(e)=>{
     })
   }).then(res=>res.json())
   .then(data=>{
-   
+    console.log(data)
     if(data.error){
       M.toast({html:data.error})
-      
+      console.log(data.error);
     }
     else{
       M.toast({html:data.message})
       dispatch({type:"USER",payload:data.user});
-     
-      
+      console.log(data.token)
       localStorage.setItem("jwt",data.token)
       localStorage.setItem("user",JSON.stringify(data.user))
       Navigate('/')
@@ -51,24 +51,18 @@ const PostData=async(e)=>{
 }
   return (
     
-    <div className='mycard '>
-      <div className='card auth-card' id="login-form-wrap">
-        <h2>Login</h2>
-        <form id="login-form">
-    
-       <input type="text"  name="email" id="username"  autoComplete="off" value={user.email} className='input-field validation' placeholder="email" onChange={handleChange}/>
-       
-       
-        <input type="password" name="password" id="email" autoComplete="off" value={user.password} className='input-field validation' placeholder='password'onChange={handleChange}/>
+    <div className='mycard'>
+      <div className='card auth-card'>
+        <h2 style={{  fontFamily: 'Roboto'}}>AskAway</h2>
+        <form >
+        <input type="text"  name="email" autoComplete="off" value={user.email}className='input-field' placeholder="email" onChange={handleChange}/>
+        <input type="password" name="password" autoComplete="off" value={user.password}className='input-field' placeholder='password'onChange={handleChange}/>
 
 
         <input type='submit' name='signup' className="btn waves-effect waves-light #64b5f6 blue darken-1"  value="Login" onClick={PostData}/>
         <br/>
 
-      <div id="create-account-wrap"> 
-      <NavLink className="nav-links-login"  to="/signup">Dont have a account? Signup</NavLink>
-      </div>
-
+        <NavLink className="nav-links-login"  to="/signup">Dont have a account? Signup</NavLink>
   </form>
       </div>
     </div>

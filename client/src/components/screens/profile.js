@@ -1,11 +1,13 @@
 import React,{useEffect,useState,useContext} from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink,useParams } from 'react-router-dom'
 import { UserContext } from '../../App'
 
 export default function Profile() {
 
   const {state,dispatch}=useContext(UserContext)
   const [data,setData]=useState([])
+  const {userid}=useParams
+  console.log(userid)
   useEffect(()=>{
 fetch("/mypost",{
   headers:{

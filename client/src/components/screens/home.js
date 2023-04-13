@@ -1,5 +1,8 @@
 import React,{useState,useEffect, useContext}from 'react'
 import {UserContext} from '../../App'
+import {NavLink} from 'react-router-dom'
+
+import M from 'materialize-css'
 function Home() {
 const [data,setData]=useState([])
 const {state,dispatch}=useContext(UserContext)
@@ -78,11 +81,12 @@ fetch("/allpost",{
             }
         }).then(res=>res.json())
         .then(result=>{
-            console.log(result)
+            
             const newData=data.filter(item=>{
                 return item._id !==result._id
             })
             setData(newData)
+            M.toast({html:"deleted successfully",classes:"#c62828 green darken-3"})
         })
     }
     const makeComment=(text,postId)=>{
@@ -121,7 +125,10 @@ fetch("/allpost",{
                 return(
                                
 <div className="card home-card" >
-    <h5>{item.postedby.name} {item.postedby._id==state._id && 
+    <h5> {item.postedby._id==state._id?item.postedby.name :<NavLink  to={`/profile/${item.postedby._id}`}>
+    {item.postedby.name}
+  </NavLink>}
+   {item.postedby._id==state._id && 
         <i className="material-icons" style={{float:"right",cursor:"pointer",userSelect:"none"}} onClick={()=>{deletePost(item._id)}}>delete</i>
      }
     </h5>
@@ -151,7 +158,7 @@ fetch("/allpost",{
         makeComment(e.target[0].value,item._id)
         
        }}>
-       <input type="text" placeholder='add comment' name="" id="" />
+       <input type="text" placeholder='add comment' name="" id=""  style={{width:"80%"}}/>
        
        </form>
 
