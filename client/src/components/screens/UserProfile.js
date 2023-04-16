@@ -23,11 +23,10 @@ export default function UserProfile() {
         console.log(error);
       });
   }, [userid]);
-
   useEffect(() => {
     // Check local storage for follow status
     const user = JSON.parse(localStorage.getItem('user'));
-    if (user && user.followings.includes(userid)) {
+    if (user && user.followings && user.followings.includes(userid)) {
       setShowFollow(false);
     }
   }, []);

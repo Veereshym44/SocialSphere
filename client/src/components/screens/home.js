@@ -124,7 +124,7 @@ fetch("/allpost",{
             data.map(item=>{
                 return(
                                
-<div className="card home-card" >
+<div className="card home-card" key={item._id} >
     <h5> {item.postedby._id==state._id?item.postedby.name :<NavLink  to={`/profile/${item.postedby._id}`}>
     {item.postedby.name}
   </NavLink>}

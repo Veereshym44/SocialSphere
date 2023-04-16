@@ -56,13 +56,13 @@ router.post('/login',(req,res)=>{
             if(doMatch){
                 
                 const token=jwt.sign({_id:user._id},process.env.JWT_SECRET)
-                const{_id,name,email}=user;
-                res.json({token,user:{_id,name,email},message:'login successfull'});
-                
+                const userWithoutPassword = Object.assign({}, user._doc); // Create a new object without password field
+                delete userWithoutPassword.password; // Delete the password field from the object
+                res.json({token,user: userWithoutPassword, message:'login successfull'}); // Send the updated object in response
                 
             }
             else{
-                return res.json({error:"inavlid email or password"})
+                return res.json({error:"invalid email or password"})
             }
         })
         .catch(err=>{
@@ -70,4 +70,5 @@ router.post('/login',(req,res)=>{
         })
     })
 })
+
 module.exports=router;
