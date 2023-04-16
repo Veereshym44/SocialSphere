@@ -22,7 +22,7 @@ const Routing=()=>{
   
   if(user )
   {
-  
+  Navigate('/')
   dispatch({type:"USER",payload:user})
   }
  

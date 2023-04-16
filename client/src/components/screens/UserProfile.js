@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import { useParams, NavLink } from 'react-router-dom';
 import { UserContext } from '../../App';
 
+
 export default function UserProfile() {
   const { state, dispatch } = useContext(UserContext);
   const [showFollow, setShowFollow] = useState(true);
@@ -87,8 +88,12 @@ export default function UserProfile() {
         });
       });
   };
- 
+  if (data === null) {
+      return <div> <h2>Loading...</h2></div>; // or render a spinner or a custom loading message
+    }
   return (
+   
+  
 
     <div>
       {data ? (
@@ -166,7 +171,7 @@ export default function UserProfile() {
           </div>
         </div>
       ) : (
-        <h2>Loading.....</h2>
+        <h2>NO DATA FOUND....</h2>
       )}
     </div>
   )

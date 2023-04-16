@@ -15,17 +15,16 @@ router.get('/allpost',requireLogin,(req,res)=>{
         console.log(err)
     })
 })
-router.get('/mypost',requireLogin,(req,res)=>{
-    Post.find({postedby:req.user._id})
-    .populate("postedby","_id name")
-    .then(mypost=>{
-res.json({mypost})
-    })
-    .catch(err=>{
-        console.log(err)
-    })
-
-})
+router.get('/mypost', requireLogin, async (req, res) => {
+    try {
+      const mypost = await Post.find({ postedby: req.user._id }).populate('postedby', '_id name');
+      res.json({ mypost });
+    } catch (err) {
+      console.log(err);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  });
+  
 router.post('/createpost',requireLogin,(req,res)=>{
     const {title,body,photo}=req.body
     
