@@ -84,15 +84,34 @@ object-fit: cover;
 }
 .proflie-main-div{
   max-width: 70%;
-  margin: 0 auto;
+  margin: 2% auto;
+  
+}
+.main-div{
+  justify-content: center;
+  align-items: center;
+  padding: 0 5%;
+  margin: 2%;
+
 }
 @media(max-width:700px){
   .proflie-main-div{
     max-width: 100%;
+    justify-content: space-around;
+    
   }
+  .main-div{
+    justify-content: center;
+    padding: 0;
+  }
+
   .create-post-div{
     max-width: 90%;
   }
+.text-data h4{
+  font-size:1.2rem;
+  font-weight: 500;
+}
   .auth-card{
     max-width: 80%;
   }
