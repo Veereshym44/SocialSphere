@@ -1,22 +1,45 @@
-﻿
-# SocialSphere
-This is a social media application built using #MERN stack .
+# SOCIALSPHERE
 
-To run this webapp you can fork it or download zip file .
+SocialSphere is a social media application that facilitates user connections, post sharing, and interactive discussions through comments and conversations.
 
+## Documentation
 
-Next to run client ,First go to client directory and write command 
-# npm i
-to install all the necessary packages.
-Then in client directory press the command 
-# npm start
-to start client in localhost. 
+For detailed instructions, guidelines, and information, please refer to the [Documentation](Documentation).
 
+## Getting Started
 
-Next go to server directory press the command 
-# npm i 
-and create .env file and add mongo_uri and jwt_secret.
-To run server go to main directory press the command
-# npm start
-to start server .
+To get started with SocialSphere, follow these steps:
+
+1. Open another terminal and navigate to the `server` folder within the project directory.
+2. Run the following command to install the necessary npm packages for the server:
+
+    ```sh
+    npm install
+    ```
+
+3. Create a `.env` file in the `server` directory and add your MongoDB URL:
+
+    ```makefile
+    MONGO_URL=your_mongodb_url_here
+    ```
+
+4. In the terminal within the `server` directory, start the server using the following command:
+
+    ```sh
+    node server.js
+    ```
+
+5. In the terminal within the `client` directory, navigate to the `client` folder within the project directory.
+6. Run the following command to install the necessary npm packages for the client:
+
+    ```sh
+    npm install
+    ```
+
+7. In the terminal within the `client` directory, start the client using the following command:
+
+    ```sh
+    npm start
+    ```
+
 
